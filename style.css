@@ -9,19 +9,33 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #efbcd5;
+    background-color: #4e303f;
 }
 
 .container {
-    background-color: white;
+    background-color: rgb(238, 226, 226);
+    text-align: center;
     padding: 2rem;
     border-radius: 2rem;
     min-height: 45vh;
     width: 40vw;
 }
 
+h1{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.amount p{
+    font-weight: 700;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
 form {
     margin: 2rem 0 1rem 0;
+}
+
+form p, select{
+    font-weight: bold;
 }
 
 form select,
@@ -73,6 +87,7 @@ form input {
 .msg{
     margin: 2rem 0 2rem 0;
     text-align: center;
+    font-weight: bold;
 }
  
 form button{
@@ -80,8 +95,15 @@ form button{
     background-color: #8661c1;
     color: white;
     cursor: pointer;
+    font-weight: bold;
 }
 
 form button:hover{
     background-color: #723fc5;
+}
+
+@media screen and (max-width: 900px) {
+    .container {
+        width: 90vw;
+    }
 }
