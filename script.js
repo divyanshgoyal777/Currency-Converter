@@ -30,12 +30,22 @@ const updateExchangeRate = async () => {
         amount.value = "1"
     }
     const api_url = `https://v6.exchangerate-api.com/v6/bb08d43a5e91fac6e4985172/latest/${fromCurr.value}`
-    fetch(api_url).then(response => response.json()).then(result => {
+    try {
+        const response = await fetch(api_url);
+
+        if (!response.ok) {
+            throw new Error('API Key Quota Exceeded');
+        }
+
+        const result = await response.json();
         let exchange_rate = result.conversion_rates[toCurr.value];
-        let totalExchangeRate = (amount.value * exchange_rate).toFixed(6);
-        msg.innerText = `${amount.value} ${fromCurr.value} = ${totalExchangeRate} ${toCurr.value}`
-    })
-}
+        let totalExchangeRate = (amtVal * exchange_rate).toFixed(6);
+        msg.innerText = `${amtVal} ${fromCurr.value} = ${totalExchangeRate} ${toCurr.value}`;
+
+    } catch (error) {
+        msg.innerText = `Error: ${error.message}`;
+    }
+};
 
 const updateFlag = (element) => {
     let currencycode = element.value;
